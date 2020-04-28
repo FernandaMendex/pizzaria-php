@@ -1,15 +1,46 @@
 <?php 
+    //Valores padrão
+    $nome = '';
+    $endereco = '';
+    $senha = '';
+    $confirmacao = '';
 
-    $nomeOk = true;
+    //Variáveis de controle de erro:
+    $nomeOk = true; //Não queremos já começar dizendo que os dados estão incorretos
+    $enderecoOk = true;
+    $senhaOk = true;
+    $confirmacaoOk = true;
 
     if($_POST){
+        //Para verificar se o usuário enviou o formulário, o bloco abaixo só será executado se o usuário enviou
+
+        $nome = $_POST['nome'];
+        //Guardando o dado cadastrado na variável na variável $nome
+
+        $endereco = $_POST['endereco'];
+        //Guardando o dado cadastrado na variável na variável $endereco
+
+        $senha = $_POST['senha'];
+        $confirmacao = $_POST['confirmacao'];
+
 
         // Validando o nome
-        if($_POST['nome'] == ''){
+        if(strlen($_POST['nome']) < 5){ //Valida se o texto digitado tem pelo menos 5 carac
             $nomeOk = false;
             // Quando desejarmos redirecionar o usuário para uma outra página
             // header("location: erro.php");
         }
+        if(strlen($endereco) < 20){ //Valida se o texto digitado tem pelo menos 20 carac
+            $enderecoOk = false;
+        }
+        if(strlen($senha) < 5 || $senha != $confirmacao){ //Valida se o texto digitado nos campos Senha e Confirmação são iguais e tem pelo menos 5 caracteres
+            $senhaOk = false;
+        }
+
+        // Se tudo estiver ok, salva o usuário e redireciona para um dado endereço
+        // if ($nomeOk && $enderecoOk && $senhaOk) {
+        //     
+        // }
     }
 ?>
 
@@ -27,8 +58,8 @@
 	<form id="form-usuario" method="POST">
 		<label>
             Nome:
-            <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
-            <?= ($nomeOk?'':'<span class="erro">Preencha o campo com um nome válido');  ?>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" value="<?= $nome ?>">
+            <?= ($nomeOk?'':'<span class="erro">Preencha o campo com um nome válido</span>');  ?>
         </label>
 		<label>
             Telefone:
@@ -40,15 +71,17 @@
         </label>
 		<label>
             Endereço:
-            <input type="text" name="endereco" id="endereco" placeholder="Digite seu endereco">
+            <input type="text" name="endereco" id="endereco" placeholder="Digite seu endereco" value="<?= $endereco ?>">
+            <?= ($enderecoOk?'':'<span class="erro">Preencha o campo com pelo menos 20 caracteres</span>');  ?>
         </label>
 		<label>
             Senha:
-            <input type="password" name="senha" id="senha" placeholder="Digite uma senha">
+            <input type="password" name="senha" id="senha" placeholder="Digite uma senha" value="<?= $senha ?>">
+            <?= ($senhaOk?'':'<span class="erro">Senha inválida</span>');  ?>
         </label>
 		<label>
             Confirmação:
-            <input type="password" name="confirmacao" id="confirmacao" placeholder="Confirme a senha digitada">
+            <input type="password" name="confirmacao" id="confirmacao" placeholder="Confirme a senha digitada" value="<?= $confirmacao ?>">
         </label>
 		<label>
             <img src="../img/no-image.png" id="foto-carregada">

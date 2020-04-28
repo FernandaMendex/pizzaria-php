@@ -154,4 +154,37 @@
      * Defina uma função que impima as informações de uma pizza
      */
     function pizzaPrint($pizza){}
+
+    // Carrega os usuários do arquivo usuarios.json e retorna um array associativo contendo os usuários
+
+    function carregaUsuarios(){
+        // -Ler o arquivo para uma variável string 
+        $strJson = file_get_contents("includes/usuarios.json");
+
+        // -Transformar a string em array associativo 
+        $usuarios = json_decode($strJson, true);
+
+        // -Retornar o array associativo
+        return $usuarios;
+    }
+        
+    function addUsuario($nome, $telefone, $email, $endereco, $senha, $imagem){
+        // -Carrega os usuários para $usuarios
+        $usuarios = carregaUsuarios();
+
+        // -Cria um array assoc $u com os dados passados por parâmetro
+        $u = ['nome'=>$nome, 'telefone'=>$telefone, 'email'=>$email, 'endereco'=>$endereco, 'senha'=>$senha, 'imagem'=>$imagem];
+
+        // -Adiciona $u ao final do array usuarios
+        $usuarios[] = $u;
+
+        // -Transforma o array de usuários de volta em string json
+        $stringjson = json_encode($usuarios);
+
+        // -Salva a string json no arquivo usuarios.json 
+        file_put_contents('includes/usuarios.json', $stringjson);
+    }
+
+        
+        
 ?>

@@ -1,0 +1,34 @@
+[
+    {
+        "nome": "Fernanda Mendes",
+        "telefone": "9999-9991",
+        "email": "fernanda@digitalhouse.com",
+        "endereco": "Rua Julio Verne, 156",
+        "senha": "Entrada.2020",
+        "imagem": "./img/usuarios/rr45.jpg"
+    },
+    {
+        "nome": "Diego Farias",
+        "telefone": "9999-9992",
+        "email": "diego@digitalhouse.com",
+        "endereco": "Rua Leite de Barros, 3030",
+        "senha": "Entrada.2020",
+        "imagem": "./img/usuarios/rr45ww.jpg"
+    },
+    {
+        "nome": "João da Silva",
+        "telefone": "9999-9993",
+        "email": "joao@digitalhouse.com",
+        "endereco": "Rua dos Bobos, 0",
+        "senha": "Entrada.2020",
+        "imagem": "./img/usuarios/kelrr45.jpg"
+    },
+    {
+        "nome": "Pedro Mendes",
+        "telefone": "9999-9994",
+        "email": "pedro@digitalhouse.com",
+        "endereco": "Rua Otaviano Costa, 879",
+        "senha": "Entrada.2020",
+        "imagem": "./img/usuarios/rwwwer45.jpg"
+    }
+]
