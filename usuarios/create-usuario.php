@@ -13,6 +13,7 @@
     $enderecoOk = true;
     $senhaOk = true;
     $confirmacaoOk = true;
+    $imagem = null;
 
     if($_POST){
         //Para verificar se o usuário enviou o formulário, o bloco abaixo só será executado se o usuário enviou
@@ -27,9 +28,24 @@
         $confirmacao = $_POST['confirmacao'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
-        $imagem = null;
 
+        //Verificar se $_FILES está vindo (se foi adicionada a imagem)
+        if ($_FILES) {
+            //Separando informações úteis do $_FILES
+            $tmpName = $_FILES['foto']['tmp_name'];
+            $fileName = uniqid()."-". $_FILES['foto']['name']; 
+            $error = $_FILES['foto']['error'];
 
+            //Salvar o arquivo numa pasta do meu sistema
+            move_uploaded_file($tmpName, '../img/usuarios/'.$fileName);
+
+            //Salvar o nome do arquivo em img/usuarios/
+            $imagem = '../img/usuarios/'.$fileName;
+        } else {
+            $imagem = null;
+        }
+
+        
         // Validando o nome
         if(strlen($_POST['nome']) < 5){ //Valida se o texto digitado tem pelo menos 5 carac
             $nomeOk = false;
@@ -47,7 +63,10 @@
         if ($nomeOk && $enderecoOk && $senhaOk) {
 
             //Salvando o usuário novo
-            addUsuario($nome, $telefone, $email, $endereco, $senha, $imagem);          
+            addUsuario($nome, $telefone, $email, $endereco, $senha, $imagem);
+            
+            //Redirecionando usuário para a lista de usuários
+            header('location: list-usuarios.php');
         }
     }
 ?>
@@ -63,7 +82,7 @@
 </head>
 <body>
 	<link rel="stylesheet" href="../css/form-usuario.css">
-	<form id="form-usuario" method="POST">
+	<form id="form-usuario" method="POST" enctype="multipart/form-data">
 		<label>
             Nome:
             <input type="text" name="nome" id="nome" placeholder="Digite seu nome" value="<?= $nome ?>">
