@@ -16,7 +16,7 @@
             //Testando se usuário está cadastrado
             if ($usuario['email'] == $email) {
                 //Usuário ok, testando senha
-                if ($usuario['senha'] == $senha) {
+                if (password_verify($senha, $usuario['senha'])){
 
                     //Iniciar a session
                     session_start();
