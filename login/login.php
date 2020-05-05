@@ -17,6 +17,17 @@
             if ($usuario['email'] == $email) {
                 //Usuário ok, testando senha
                 if ($usuario['senha'] == $senha) {
+
+                    //Iniciar a session
+                    session_start();
+
+                    //Criando a session para o usuário 
+                    //Isso manda o cookie para o usuário, de forma que ele permaneça identificado quando retornar à página
+                    $_SESSION['email'] = $usuario['email'];
+                    $_SESSION['nome'] = $usuario['nome'];
+                    $_SESSION['imagem'] = $usuario['imagem'];
+                    $_SESSION['telefone'] = $usuario['telefone'];
+
                     //Chegando nesse ponto, vou redirecioná-lo para a pag que lista usuários
                     header('location: ../usuarios/list-usuarios.php');
                 }
