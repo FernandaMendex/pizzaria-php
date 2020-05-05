@@ -173,7 +173,8 @@
         $usuarios = carregaUsuarios();
 
         // -Cria um array assoc $u com os dados passados por parâmetro
-        $u = ['nome'=>$nome, 'telefone'=>$telefone, 'email'=>$email, 'endereco'=>$endereco, 'senha'=>$senha, 'imagem'=>$imagem];
+        $u = ['nome'=>$nome, 'telefone'=>$telefone, 'email'=>$email, 'endereco'=>$endereco, 'senha'=>password_hash($senha, PASSWORD_DEFAULT) , 'imagem'=>$imagem];
+        //Guardando senha criptografada
 
         // -Adiciona $u ao final do array usuarios
         $usuarios[] = $u;

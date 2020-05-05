@@ -36,7 +36,6 @@
         //Se não achar o usuário, exibir um erro     
         $loginOk = false;
 
-
     }
 
 ?>
