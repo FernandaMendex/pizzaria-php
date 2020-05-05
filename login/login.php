@@ -22,8 +22,9 @@
                 }
             }
         }
-
+        //Se não achar o usuário, exibir um erro     
         $loginOk = false;
+
 
     }
 
@@ -42,6 +43,7 @@
 <form method="post">
         <label for="email"><input id="email" name="email" type="text" placeholder="E-mail"></label>
         <label for="senha"><input id="senha" name="senha" type="password" placeholder="Senha"></label>
+        <!--Se não achar o usuário, exibir um erro!-->
         <?= ($loginOk?'':'<span class="error">Falha no login</span>') ?>
         <button type="submit">Entrar</button>        
 

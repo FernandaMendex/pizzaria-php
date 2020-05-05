@@ -159,8 +159,7 @@
 
     function carregaUsuarios(){
         // -Ler o arquivo para uma variável string 
-        $strJson = file_get_contents("../includes/usuarios.json"
-    );
+        $strJson = file_get_contents("../includes/usuarios.json");
 
         // -Transformar a string em array associativo 
         $usuarios = json_decode($strJson, true);
